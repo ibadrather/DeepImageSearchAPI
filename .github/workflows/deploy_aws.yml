@@ -24,10 +24,21 @@ jobs:
         with:
           python-version: 3.8
           # optional: architecture: x64 x64 or x86. Defaults to x64 if not specified
-
+        
       # Step-2 Install Python Virtual ENV
       - name: Install Python Virtual ENV
-        run: pip3 install virtualenv
+        run: 
+            pip3 install virtualenv black
+      
+      # Format code with Black
+      - name: Format code with Black
+        run: |
+          black .
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Format code with Black" || true
+          git push origin
 
       # Step-3 Setup Virtual ENV
       # https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows
