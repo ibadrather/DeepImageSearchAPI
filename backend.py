@@ -45,12 +45,12 @@ async def search_similar_images(
         FEATURE_EXTRACTOR_NAME = "efficientnet_onnx"
 
         image_search_engine = ImageSearchEngine(
-        model_path=MODEL_PATH,
-        images_dir=IMAGES_DIR,
-        mode=MODE,
-        metadata_dir=METADATA_DIR,
-        feature_extractor_name=FEATURE_EXTRACTOR_NAME,
-    )
+            model_path=MODEL_PATH,
+            images_dir=IMAGES_DIR,
+            mode=MODE,
+            metadata_dir=METADATA_DIR,
+            feature_extractor_name=FEATURE_EXTRACTOR_NAME,
+        )
         similar_images_names_list = (
             image_search_engine.get_similar_images_list_from_image(
                 image,
@@ -60,8 +60,7 @@ async def search_similar_images(
 
         # Jus keep the base name of the images
         similar_images_names_list = [
-            os.path.basename(image_name)
-            for image_name in similar_images_names_list
+            os.path.basename(image_name) for image_name in similar_images_names_list
         ]
 
         # Retrieve similar images from the database
