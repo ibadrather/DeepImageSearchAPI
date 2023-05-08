@@ -7,7 +7,6 @@ This FastAPI-based API provides a simple and efficient way to search for similar
 1. Install required packages:
     ```
     pip install fastapi uvicorn Pillow
-
     ```
 2. Download the trained feature extractor model and place it in a models directory.
 
@@ -17,7 +16,6 @@ This FastAPI-based API provides a simple and efficient way to search for similar
 
     ```
     uvicorn backend:app --host 0.0.0.0 --port 8000
-
     ```
 
 ## Usage

@@ -5,8 +5,9 @@ from PIL import Image
 from typing import List
 import uvicorn
 import os
-from RevSearchEngine.SearchEngine import ImageSearchEngine
-from utils.get_objects_from_aws_s3_bucket import get_multiple_images_from_s3_bucket
+from api.RevSearchEngine.SearchEngine import ImageSearchEngine
+from api.utils.get_objects_from_aws_s3_bucket import get_multiple_images_from_s3_bucket
+from mangum import Mangum
 
 app = FastAPI()
 
@@ -18,6 +19,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+handler = Mangum(app)
 
 
 class SimilarImagesResponse(BaseModel):
@@ -74,4 +77,4 @@ async def search_similar_images(
 
 
 if __name__ == "__main__":
-    uvicorn.run("backend:app", host="0.0.0.0", port=8000, log_level="info")
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, log_level="info")
