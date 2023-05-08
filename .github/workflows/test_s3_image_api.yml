@@ -31,4 +31,4 @@ jobs:
         BASE_S3_LAMBDA_API_GATEWAY_URL: ${{ secrets.BASE_S3_LAMBDA_API_GATEWAY_URL }}
         BUCKET_NAME_REV_SEARCH_DATABASE_IMAGES: ${{ secrets.BUCKET_NAME_REV_SEARCH_DATABASE_IMAGES }}
       run: |
-        pytest tests/backend/test_s3api.py
+        pytest 
