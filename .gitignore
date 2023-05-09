@@ -1,3 +1,7 @@
+#######################################
+cars_dataset_metadata_dir
+api/cars_dataset_metadata_dir
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
