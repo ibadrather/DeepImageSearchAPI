@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 
-from utils.get_objects_from_aws_s3_bucket import (
+from api.utils.get_objects_from_aws_s3_bucket import (
     create_image_url_for_s3_lambda_api_gateway,
     get_image_from_s3_bucket,
 )
