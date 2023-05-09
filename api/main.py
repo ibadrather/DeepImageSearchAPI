@@ -5,6 +5,7 @@ from typing import List
 import uvicorn
 import os
 import sys
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "api")))
 
 from utils.get_objects_from_aws_s3_bucket import get_multiple_images_from_s3_bucket
@@ -41,7 +42,6 @@ def index():
 @app.post("/search-similar-images", response_model=SimilarImagesResponse)
 async def search_similar_images(request: SimilarImagesRequest):
     try:
-
         # Retrieve similar images from the database
         similar_images_base64 = await get_multiple_images_from_s3_bucket(
             request.similar_images_names_list
@@ -50,7 +50,6 @@ async def search_similar_images(request: SimilarImagesRequest):
         return {"similar_images": similar_images_base64}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
-
 
 
 if __name__ == "__main__":
