@@ -103,10 +103,12 @@ jobs:
         run: aws s3 cp api.zip s3://${AWS_REV_SEARCH_BUCKET_NAME}/api.zip
         
       - name: Deploy new Lambda
-        run: aws lambda update-function-code --function-name RevImageSearchFastAPI --s3-bucket ${AWS_REV_SEARCH_BUCKET_NAME} --s3-key api.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_REV_SEARCH_BUCKET_NAME: ${{ secrets.REV_SEARCH_BUCKET_NAME }}
+
+        run: aws lambda update-function-code --function-name RevImageSearchFastAPI --s3-bucket $AWS_REV_SEARCH_BUCKET_NAME --s3-key api.zip
         
 
