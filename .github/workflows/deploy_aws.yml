@@ -15,12 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:   
       # Check out repo so our workflow can access it
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       
       # Step-1 Setup Python
       - name: Set up Python
         # This action sets up a Python environment for use in actions
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
           python-version: 3.8
           # optional: architecture: x64 x64 or x86. Defaults to x64 if not specified
@@ -43,7 +43,7 @@ jobs:
       # Step-3 Setup Virtual ENV
       # https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows
       - name:  Virtual ENV
-        uses: actions/cache@v3
+        uses: actions/cache@v2
         id: cache-venv # name for referring later
         with:
           path: venv # what we cache: the Virtual ENV
@@ -71,7 +71,7 @@ jobs:
       - name: Add API files to Zip file
         run: cd ./api && zip -g ../api.zip -r .
       - name: Upload zip file artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: api
           path: api.zip
