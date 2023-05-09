@@ -22,7 +22,7 @@ jobs:
         # This action sets up a Python environment for use in actions
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.10
           # optional: architecture: x64 x64 or x86. Defaults to x64 if not specified
         
       # Step-2 Install Python Virtual ENV
@@ -64,9 +64,10 @@ jobs:
         # Note that you have to activate the virtualenv in every step
         # because GitHub actions doesn't preserve the environment   
         run: . venv/bin/activate && pytest -s
+      
       - name: Create archive of dependencies
         run: |
-          cd ./venv/lib/python3.7/site-packages
+          cd ./venv/lib/python3.10/site-packages
           zip -r9 ../../../../api.zip .
       - name: Add API files to Zip file
         run: cd ./api && zip -g ../api.zip -r .
