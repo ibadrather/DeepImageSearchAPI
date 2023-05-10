@@ -54,9 +54,8 @@ def handler(event, context):
     print("Event:", event)
     return Mangum(app)(event, context)
 
+
 # handler = Mangum(app)
-
-
 
 
 # if __name__ == "__main__":
