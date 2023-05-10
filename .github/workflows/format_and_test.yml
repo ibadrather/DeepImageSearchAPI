@@ -1,4 +1,4 @@
-name: Format Python Code using Black
+name: "CI/CD Pipeline: Format, Test and Deploy"
 
 on:
   push:
