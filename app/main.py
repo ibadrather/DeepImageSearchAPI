@@ -1,4 +1,4 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
@@ -6,7 +6,7 @@ import uvicorn
 import os
 import sys
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "api")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "app")))
 
 from utils.get_objects_from_aws_s3_bucket import get_multiple_images_from_s3_bucket
 
@@ -22,9 +22,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-handler = Mangum(app)
-
 
 class SimilarImagesResponse(BaseModel):
     similar_images: List[str]
@@ -50,6 +47,13 @@ async def search_similar_images(request: SimilarImagesRequest):
         return {"similar_images": similar_images_base64}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+    
+
+def handler(event, context):
+    print("Event:", event)
+    return Mangum(app)(event, context)
+
+handler = Mangum(app)
 
 
 if __name__ == "__main__":
