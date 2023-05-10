@@ -32,6 +32,13 @@ jobs:
           git add .
           git commit -m "Format code with Black" || true
           git push origin
+      
+      - name: Run tests
+        env:
+          BASE_S3_LAMBDA_API_GATEWAY_URL: ${{ secrets.BASE_S3_LAMBDA_API_GATEWAY_URL }}
+          BUCKET_NAME_REV_SEARCH_DATABASE_IMAGES: ${{ secrets.BUCKET_NAME_REV_SEARCH_DATABASE_IMAGES }}
+        run: |
+          pytest 
 
   CD:
     needs: [CI]
