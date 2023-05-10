@@ -23,6 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class SimilarImagesResponse(BaseModel):
     similar_images: List[str]
 
@@ -47,7 +48,7 @@ async def search_similar_images(request: SimilarImagesRequest):
         return {"similar_images": similar_images_base64}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
-    
+
 
 def handler(event, context):
     print("Event:", event)
