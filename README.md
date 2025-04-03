@@ -15,7 +15,7 @@ This FastAPI-based API provides a simple and efficient way to search for similar
 4. Run the API:
 
     ```
-    uvicorn backend:app --host 0.0.0.0 --port 8000
+    uvicorn app.main:app --host 0.0.0.0 --port 8000
     ```
 
 ## Usage
